@@ -4,4 +4,22 @@
     <string name="Ingbtn">+</string>
     <string name="degbtn">-</string>
     <string name="_0">0</string>
+    <string name="explict_intent">Explict Intent</string>
+    <string name="open_main_activity">Open Main Activity</string>
+    <string name="implict_intent">Implict Intent</string>
+    <string name="data">Data</string>
+    <string name="open_webpage">Open Webpage</string>
+    <string name="dial_number">Dial number</string>
+    <string name="share_text">Share Text</string>
+    <string name="g0">G0</string>
+    <string name="sending_and_receiving_data">Sending and Receiving Data</string>
+    <string name="intial_count">Intial Count</string>
+    <string name="sending_receving_data"><![CDATA[Sending & Receving Data]]></string>
+    <string name="initial_count">Initial Count</string>
+    <string name="send">Send</string>
+    <string name="send_back">Send Back</string>
+    <string name="textview">TextView</string>
+    <string name="final_result_after_send_back_is">Final result After send back is</string>
+
+
 </resources>
