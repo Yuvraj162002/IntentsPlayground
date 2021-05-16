@@ -69,6 +69,7 @@
                 android:hint="@string/data">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/Textinput"
                     android:layout_width="380dp"
                     android:layout_height="90dp"
                     android:layout_gravity="center_horizontal"
@@ -139,10 +140,11 @@
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:inputType="number"
-                            android:maxLength="5"
+                            android:id="@+id/textinput"
                             android:layout_width="300dp"
                             android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:maxLength="5"
                             android:padding="20dp" />
 
                         <Button
