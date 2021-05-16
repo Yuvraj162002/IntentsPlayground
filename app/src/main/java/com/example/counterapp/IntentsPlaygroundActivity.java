@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
@@ -17,6 +18,8 @@ import com.example.counterapp.databinding.ActivityIntentsPlaygroundBinding;
 public class IntentsPlaygroundActivity extends AppCompatActivity {
 
     private static final int REQUEST_COUNT = 0 ;
+    String input;
+    String data;
     ActivityIntentsPlaygroundBinding b;
 
 
@@ -25,8 +28,12 @@ public class IntentsPlaygroundActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         b = ActivityIntentsPlaygroundBinding.inflate(getLayoutInflater());
         setContentView(b.getRoot());
+        SharedPreferences preferences = getPreferences(MODE_PRIVATE);
+        data = preferences.getString(Constants.DATA_KEY,"");
 
-        setupHideErrorForEditText();
+       b.textinput.setText(String.valueOf(data));
+
+       setupHideErrorForEditText();
     }
 
     private void setupHideErrorForEditText() {
@@ -56,8 +63,8 @@ public class IntentsPlaygroundActivity extends AppCompatActivity {
     }
 
     public void SendImplictIntent(View view) {
-        String input = b.Data.getEditText().getText().toString().trim();
-        if (input.isEmpty()) {
+        String data = b.Data.getEditText().getText().toString().trim();
+        if (data.isEmpty()) {
             b.Data.setError("Please enter something");
             return;
         }
@@ -65,13 +72,13 @@ public class IntentsPlaygroundActivity extends AppCompatActivity {
         int type = b.intentTypeRadioGroup.getCheckedRadioButtonId();
 
         if (type == R.id.OpenWebpageRadioBut) {
-            OpenWebpage(input);
+            OpenWebpage(data);
         }
         else if (type == R.id.DialButtonRadioBut){
-            DialButton(input);
+            DialButton(data);
         }
         else if ( type == R.id.ShareTextRadioBut){
-          ShareText(input);
+          ShareText(data);
     }
         else {
             Toast.makeText(this, "Please select one button", Toast.LENGTH_SHORT).show();
@@ -99,6 +106,7 @@ public class IntentsPlaygroundActivity extends AppCompatActivity {
         if (requestCode == REQUEST_COUNT && resultCode == RESULT_OK){
             int count = data.getIntExtra("initialcount",0);
             b.result.setText("Final count received"+count);
+           // b.result.setVisibility(View.VISIBLE);
         }
     }
 
@@ -140,6 +148,15 @@ public class IntentsPlaygroundActivity extends AppCompatActivity {
 
 
         b.Data.setError(null);
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        ///  Create the shared prefernces object...
+        SharedPreferences preferences = getPreferences(MODE_PRIVATE);
+        preferences.edit()
+                .putString(Constants.DATA_KEY,data)
+                .apply();
     }
 
 
